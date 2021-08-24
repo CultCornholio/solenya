@@ -1,0 +1,1 @@
+import msphish.__main__
