@@ -1,7 +1,11 @@
 import setuptools
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+def get_long_description(path):
+    try:
+        with open(path, "r") as fh:
+            return fh.read()
+    except FileNotFoundError:
+        return str()
 
 setuptools.setup(
     name="pentools", 
@@ -9,7 +13,7 @@ setuptools.setup(
     author="Artur Saradzhyan, Alex Martirosyan",
     author_email="",
     description="CLI tool",
-    long_description=long_description,
+    long_description=get_long_description("README.md"),
     long_description_content_type="text/markdown",
     url="https://github.com/sarartur/msphish",
     packages=setuptools.find_packages(),

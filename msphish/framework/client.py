@@ -1,7 +1,7 @@
 from functools import wraps
 import requests
 
-from ..types.exceptions import ClientError
+from .types.exceptions import ClientError
 
 class Client(object):
 

@@ -1,9 +1,10 @@
 import sys
 #sys.tracebacklimit = 0
 
-from . import cli
+from . import create_tool
 
 def main(argv):
-    cli.dispatch(argv = argv)
+    tool = create_tool()
+    tool.propagate(argv)
 
 sys.exit(main(sys.argv[1:]))

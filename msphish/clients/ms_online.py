@@ -1,7 +1,6 @@
-from ..clients.base import Client
-from ..types.resource import Resource
+from ..framework.client import Client
+from ..framework.types.resource import Resource
 from ..settings import Settings
-
 
 client = Client('https://login.microsoftonline.com')
 
