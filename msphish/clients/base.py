@@ -25,6 +25,6 @@ class Client(object):
                 data=resource.data,
                 json=resource.json)
             if r.status_code != 200 and raise_on_status_code:
-                raise ClientError(f'server encountered an error (status code: {r.status_code}')
+                raise ClientError(f'server encountered an error (status code: {r.status_code})')
             return r
         return wrapper
