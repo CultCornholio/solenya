@@ -31,7 +31,7 @@ class Client(object):
     def get_access_token(self, client_id:str, device_code:str) -> tuple:
         grant = "urn:ietf:params:oauth:grant-type:device_code"
         r = requests.get(url = self.ms_base_url + '/organizations/oauth2/v2.0/token',
-            headers=self.headers,
+            headers=self.base_headers,
             data={"grant_type": grant, "client_id": client_id, "code": device_code},
             verify=False)
         if "authorization_pending" in r.text:
