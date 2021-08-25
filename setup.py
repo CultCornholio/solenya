@@ -15,7 +15,7 @@ setuptools.setup(
     description="CLI tool",
     long_description=get_long_description("README.md"),
     long_description_content_type="text/markdown",
-    url="https://github.com/sarartur/msphish",
+    url="https://github.com/sarartur/msph",
     packages=setuptools.find_packages(),
     entry_points = {
         'console_scripts': [
