@@ -1,11 +1,11 @@
-from msph.framework.cli import App
+from msph.framework.cli import CliApp
 
 from .workspace import WorkSpace
 
 workspace = WorkSpace(hidden=True)
 
-def create_tool():
-    app = App(name='msph')
+def create_app():
+    app = CliApp(name='msph')
 
     app.register_plugin(workspace)
     

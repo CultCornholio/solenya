@@ -1,7 +1,7 @@
 from .settings import BaseSettings
 from .cli import Router, Command
 
-class App(object):
+class CliApp(object):
     
     def __init__(self, name) -> None:
         self.name = name
