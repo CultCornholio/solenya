@@ -9,7 +9,7 @@ def get_long_description(path):
 
 setuptools.setup(
     name="msph", 
-    version="0.0.1",
+    version="0.0.7",
     author="Artur Saradzhyan, Alex Martirosyan",
     author_email="",
     description="CLI tool",
@@ -19,12 +19,8 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     entry_points = {
         'console_scripts': [
-            'msphish = msphish.__main__:main',                  
-        ], 
-        'msphish.registered_commands': [
-            'devc = msphish.commands.devc:main',
-            'tokens = msphish.commands.tokenst:main'
-        ]         
+            'msph = msph.__main__:main',                  
+        ],       
     },
     install_requires=['requests'],
     setup_requires=['requests'],

@@ -1,7 +1,18 @@
 from functools import wraps
 import requests
 
-from .exceptions import ClientError
+class ClientError(Exception):
+    pass
+
+class Resource(object):
+
+    def __init__(self, uri:str=str(), params:dict=dict(), headers:dict=dict(),
+        data:dict=dict(), json:dict=dict()) -> None:
+        self.uri = uri
+        self.params = params
+        self.headers = headers
+        self.data = data
+        self.json = json
 
 class Client(object):
 
@@ -10,10 +21,7 @@ class Client(object):
         if base_headers:
             self.base_headers = base_headers
         else:
-            self.base_headers = {
-            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0', 
-            'Content-Type': 'application/x-www-form-urlencoded',
-        }
+            self.base_headers = {}
 
     def endpoint(self, func):
         @wraps(func)

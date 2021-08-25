@@ -1,8 +1,8 @@
-from msph.frameworks.cli import Command, display
-from msph.frameworks.cli.exceptions import ApplicationError
+from msph.framework.cli import Command, display
+from msph.framework.cli.exceptions import ApplicationError
 
 from . import msgs
-from ... import workspace
+from .... import workspace
 
 init = Command(
     'init', 

@@ -4,7 +4,7 @@ def create_devc_message(user_code, device_code):
         f'device_code: {device_code}\n')
 
 def create_instructions_msg():
-    return ('Instructions:\n'
+    return ('\nInstructions:\n'
         f'1.) The user code lasts 15 minutes, get busy phishing...\n'
         f'2.) Start monitor mode to add check for an access code\n'
         f'3.) Guide a user to enter the code and accept the permissions of the application\n'

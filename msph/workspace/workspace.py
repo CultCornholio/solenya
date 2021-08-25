@@ -1,10 +1,10 @@
 import os
 import shutil
 
-from msph.frameworks.cli.plugin import Plugin
-from msph.frameworks.cli.exceptions import ApplicationError
+from msph.framework.cli.plugin import Plugin
+from msph.framework.cli.exceptions import ApplicationError
 
-from .types import File
+from .file import File
 
 class WorkSpace(Plugin):
 

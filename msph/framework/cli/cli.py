@@ -12,7 +12,7 @@ class Node(object):
             self.required = required
 
     def create_parser(self, depth_string):
-        name = ' '.join(depth_string.split('.')) + self.name
+        name = ' '.join(depth_string.split('.'))
         self.parser = argparse.ArgumentParser(
             prog=name, 
             description=self.description)

@@ -1,5 +1,4 @@
 from .settings import BaseSettings
-from .exceptions import ApplicationError
 from .cli import Router, Command
 
 class App(object):
@@ -9,10 +8,9 @@ class App(object):
         self.root_router = None
         self.plugins = dict()
         self.depth_string = str()
+        self.register_settings(BaseSettings())
 
-        self.overwrite_settings(BaseSettings())
-
-    def overwrite_settings(self, settings):
+    def register_settings(self, settings):
         self.settings = settings
         self.settings.register_app(self)
 
@@ -34,7 +32,7 @@ class App(object):
 
     def _propagate(self, argv, node):
         node.validate_required(self)
-        self.depth_string += node.name
+        self.depth_string += f".{node.name}"
         node.create_parser(self.depth_string)
         if isinstance(node, Router):
             route, remainder = node.get_route(argv)

