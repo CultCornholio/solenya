@@ -8,7 +8,7 @@ from ...workspace.types import File
 
 devc = Command(
     'devc', 
-    description='Dumps user_id and device_code to the WorkSpace.',
+    description='Dumps user_id and device_code to the WorkSpace',
     required=[WorkSpaceRequired(), ClientIdRequired()]
 )
 
@@ -30,7 +30,9 @@ def target(settings):
     workspace.settings_file.update(**codes)
     if settings.out_path:
         File(settings.out_path).write(**codes)
+    display(msgs.create_instructions_msg())
     display(msgs.create_devc_message(**codes))
+    
 
     
 
