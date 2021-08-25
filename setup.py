@@ -8,7 +8,7 @@ def get_long_description(path):
         return str()
 
 setuptools.setup(
-    name="pentools", 
+    name="msph", 
     version="0.0.1",
     author="Artur Saradzhyan, Alex Martirosyan",
     author_email="",

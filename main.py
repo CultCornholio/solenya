@@ -1,1 +1,1 @@
-import msphish.__main__
+import msph.__main__
