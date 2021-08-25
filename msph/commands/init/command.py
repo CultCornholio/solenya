@@ -19,7 +19,7 @@ def cli(cmd):
         action="store_true")
     return cmd
 
-@init.target(ws_required=False)
+@init.target()
 def target(settings):
     if workspace.exists:
         if not settings.hard:

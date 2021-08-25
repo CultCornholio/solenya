@@ -33,8 +33,7 @@ class Command(Node):
             self.registered_cli_func = func
         return layer
 
-    def target(self, ws_required = True):
-        self.ws_required = ws_required
+    def target(self):
         def layer(func):
             self.registered_target_func = func
         return layer

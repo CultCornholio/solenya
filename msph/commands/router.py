@@ -7,7 +7,7 @@ root_router = Router(
 
 from .init.command import init
 from .devc.command import devc
-from .dump.router import dump_router
+#from .dump.router import dump_router
 
 root_router.register_route(init)
 root_router.register_route(devc)

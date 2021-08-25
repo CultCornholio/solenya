@@ -1,4 +1,4 @@
-from msph.client_framework import Client, Resource
+from msph.frameworks.client import Client, Resource
 
 from . import constants as const
 
