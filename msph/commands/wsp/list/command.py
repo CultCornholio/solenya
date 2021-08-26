@@ -29,11 +29,11 @@ def cli(cmd):
 def target(settings):
     settings_file_content = workspace.settings_file.read()
     if settings.keys:
-        display(msgs.create_list_keys_msg(settings_file_content.keys()))
+        display(msgs.list_keys(settings_file_content.keys()))
     if settings.all:
-        display(msgs.create_list_all_msg(settings_file_content))
+        display(msgs.list_all(settings_file_content))
     if settings.file_key:
-        display(msgs.create_list_file_key_msg(
+        display(msgs.list_file_key(
             settings.file_key, 
             settings_file_content[settings.file_key]
         ))

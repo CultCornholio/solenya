@@ -9,7 +9,7 @@ def get_long_description(path):
 
 setuptools.setup(
     name="msph", 
-    version="0.0.7",
+    version="0.0.8",
     author="Artur Saradzhyan, Alex Martirosyan",
     author_email="",
     description="CLI tool",

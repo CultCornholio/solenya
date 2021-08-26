@@ -22,28 +22,30 @@ class CliApp(object):
         self.root_router = router
         self.root_router.name = self.name
 
-    def propagate(self, argv):
-        self.prepare_propagation()
-        self._propagate(argv, self.root_router)
+    def dispatch(self, argv):
+        self.prepare_dispatch()
+        self._dispatch(self.root_router, argv)
 
-    def prepare_propagation(self):
+    def prepare_dispatch(self):
         for plugin in self.plugins.values():
             plugin.before_propagation()
 
-    def _propagate(self, argv, node):
+    def _dispatch(self, node, argv):
         node.validate_required(self)
         self.depth_string += f".{node.name}"
         node.create_parser(self.depth_string)
         if isinstance(node, Router):
-            route, remainder = node.get_route(argv)
-            self._propagate(remainder, route)
+            self._dispatch(*node.get_route(argv))
         if isinstance(node, Command):
-            if node.registered_cli_func:
-                cmd = node.cli_func()
+            self._execute_command(node, argv)
+
+    def _execute_command(self, cmd, argv):
+        if cmd.registered_cli_func:
+                cmd = cmd.cli_func()
                 namespace = cmd.parser.parse_args(argv)
                 self.settings.register_from_namespace(namespace)
-            if node.registered_target_func:
-                node.target_func(self.settings)
+        if cmd.registered_target_func:
+            cmd.target_func(self.settings)
             
     
         

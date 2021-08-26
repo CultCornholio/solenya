@@ -4,5 +4,4 @@ class BaseValidator(object):
         pass
 
     def validate(self, app):
-        #overwrite
         pass

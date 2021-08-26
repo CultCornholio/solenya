@@ -24,4 +24,4 @@ def target(settings):
     if settings.verbose:
         display(r.json())
     workspace.settings_file.update(access_token = r.json()['access_token'])
-    display(msgs.create_token_refreshed_msg())
+    display(msgs.token_refreshed())

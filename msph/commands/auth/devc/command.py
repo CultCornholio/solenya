@@ -28,8 +28,8 @@ def target(settings):
         'device_code': r.json()['device_code']
     }
     workspace.settings_file.update(**codes)
-    display(msgs.create_instructions_msg())
-    display(msgs.create_devc_message(**codes))
+    display(msgs.instructions_msg())
+    display(msgs.devc_message(**codes))
     
 
     

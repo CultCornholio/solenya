@@ -23,8 +23,8 @@ def cli(cmd):
 def target(settings):
     if workspace.exists:
         if not settings.hard:
-            raise ApplicationError(msgs.create_workspace_exists_msg())
+            raise ApplicationError(msgs.workspace_exists())
         workspace.clear()
     workspace.create()
     workspace.settings_file.update(client_id = settings.client_id)
-    display(msgs.create_client_id_registered_msg(settings.client_id))
+    display(msgs.client_id_registered(settings.client_id))

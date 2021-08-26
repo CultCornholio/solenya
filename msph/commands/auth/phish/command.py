@@ -32,11 +32,11 @@ def target(settings):
         if settings.verbose:
             display(r.json())
         if r.json().get('error') == 'authorization_pending':
-            display(msgs.create_auth_pending())
+            display(msgs.auth_pending())
             if not settings.monitor:
-                raise ApplicationError(msgs.create_auth_pending())
+                raise ApplicationError(msgs.auth_pending())
         if r.json().get('error') == 'expired_token':
-            raise ApplicationError(msgs.create_auth_expired())
+            raise ApplicationError(msgs.auth_expired())
         if r.status_code == 200:
             tokens = {
                 'access_token': r.json()['access_token'],
@@ -46,6 +46,6 @@ def target(settings):
             break
         time.sleep(1)
     workspace.settings_file.update(**tokens)
-    display(msgs.create_auth_success())
+    display(msgs.auth_success())
 
 

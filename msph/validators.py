@@ -41,3 +41,13 @@ class RefreshTokenRequired(WorkSpaceRequired):
                 'Refresh token is not registered in the WorkSpace'
             )
         return False
+
+class AccessTokenRequired(WorkSpaceRequired):
+
+    def validate(self, app):
+        super().validate(app)
+        if not getattr(app.settings, 'access_token', None):
+            raise ValidationError(
+                'Access token is not registered in the WorkSpace'
+            )
+        return False

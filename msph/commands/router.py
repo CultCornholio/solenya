@@ -7,7 +7,9 @@ root_router = Router(
 
 from .wsp.router import wsp
 from .auth.router import auth
+from .graph.router import graph
 
 root_router.register_route(wsp)
 root_router.register_route(auth)
+root_router.register_route(graph)
 
