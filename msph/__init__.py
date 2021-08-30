@@ -1,15 +1,20 @@
-from msph.framework.cli import CliApp
-
+from .app import CliApp
+from .settings import Settings
+from .config import Config
 from .workspace import WorkSpace
 
-workspace = WorkSpace(hidden=True)
+settings = Settings()
+wsp = WorkSpace()
 
-def create_app():
-    app = CliApp(name='msph')
+def create_app(config = Config):
+    app = CliApp(__name__)
 
-    app.register_plugin(workspace)
-    
-    from .commands.router import root_router
-    app.register_root_router(root_router)
+    app.register_config(config)
+    app.register_settings(settings)
+    app.register_plugin(wsp)
+
+    from .commands.root import msph
+    parser = msph.assemble_parser(app=app)
+    app.register_parser(parser)
 
     return app

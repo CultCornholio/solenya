@@ -1,53 +1,27 @@
-from msph.framework.cli.validator import BaseValidator
-from msph.framework.cli.exceptions import ValidationError
+from msph.app import Validator
 
-class WorkSpaceRequired(BaseValidator):
+from .exceptions import ValidationError
+from . import wsp
+from .models import Wsp, WspTarget
 
-    def validate(self, app):
-        workspace = app.plugins['workspace']
-        if not workspace.exists:
-            raise ValidationError(
-                'Workspace is not found. \n'
-                f'Run ( {app.name} wsp init {{client_id}} )'
-            )
-        return True
-        
+class WorkSpaceRequired(Validator):
+
+    def validate(self):
+        super().validate()
+        if not wsp.exists:
+            raise ValidationError('WorkSpace is required.')
+
 class ClientIdRequired(WorkSpaceRequired):
-
-    def validate(self, app):
-        super().validate(app)
-        if not getattr(app.settings, 'client_id', None):
-            raise ValidationError(
-                'Client_id is not registered in the WorkSpace. \n'
-                f'Run ( {app.name} wsp init {{client_id}} )')
-        return True
-
-class DeviceCodeRequired(WorkSpaceRequired):
     
-    def validate(self, app):
-        super().validate(app)
-        if not getattr(app.settings, 'device_code', None):
-            raise ValidationError(
-                'Device_code is not registered in the WorkSpace. \n'
-                f'Run ( {app.name} auth devc )')
-        return True
+    def validate(self):
+        super().validate()
+        if not Wsp.select().first():
+            raise ValidationError('Client id is required.')
 
-class RefreshTokenRequired(WorkSpaceRequired):
+class ActiveTargetRequired(ClientIdRequired):
 
-    def validate(self, app):
-        super().validate(app)
-        if not getattr(app.settings, 'refresh_token', None):
-            raise ValidationError(
-                'Refresh token is not registered in the WorkSpace'
-            )
-        return False
-
-class AccessTokenRequired(WorkSpaceRequired):
-
-    def validate(self, app):
-        super().validate(app)
-        if not getattr(app.settings, 'access_token', None):
-            raise ValidationError(
-                'Access token is not registered in the WorkSpace'
-            )
-        return False
+    def validate(self):
+        super().validate()
+        if not WspTarget.select().where(WspTarget.active == True).first():
+            raise ValidationError('No active target found in WorkSpace.')
+        
