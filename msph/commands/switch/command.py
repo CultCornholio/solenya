@@ -10,7 +10,6 @@ from . import msgs
 switch = Command('switch', __name__,
     validators=[])
 
-
 @switch.assembly
 def assemble_parser(subparsers):
     parser = subparsers.add_parser('switch',
@@ -25,7 +24,6 @@ def assemble_parser(subparsers):
         type=str)
     return parser
     
-
 @switch.func
 def main():
     active_target = Target.select().join(WspTarget)\
