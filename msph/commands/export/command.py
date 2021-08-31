@@ -44,7 +44,7 @@ def main():
     else:
         file_path = os.path.join(
             wsp.root_dir, 
-            f"targets.{datetime.now().isoformat(sep='T')}.{settings.outfile_format}"
+            f"targets.{datetime.now().strftime('%Y%m%dT%H%M%S')}.{settings.outfile_format}"
         )
     if settings.outfile_format == 'csv':
         target_rows = [model_to_dict(target).values() for target in targets]

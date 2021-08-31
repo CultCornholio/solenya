@@ -4,7 +4,6 @@ attrs==21.2.0
 chardet==3.0.4
 colorful==0.5.4
 idna==3.2
-msph==0.1.1
 multidict==5.1.0
 peewee==3.14.4
 typing-extensions==3.10.0.2

@@ -4,6 +4,7 @@ import os
 
 from msph.app import Command, current_app
 
+from . import msgs
 from ....exceptions import CliAppError
 from ....clients import graph_api as client
 from ....models import Wsp, WspTarget, Target
@@ -36,18 +37,20 @@ def assemble_parser(subparsers):
 def main():
     client.client.aio = True
     wsp_record = Wsp.select().first()
+    current_app.display(msgs.starting_check())
+    current_app.display(msgs.starting_session())
     if settings.all_targets:
         targets = [target for target in Target.select()]
-        print('Running dump for all targets...')
+        current_app.display(msgs.run_for_all_targets(targets))
     else:
         targets = [target for target in Target.select()\
             .join(WspTarget)\
                 .where(WspTarget.active == True)]
-        print('Running dump for active target...')
+        current_app.display(msgs.run_for_active_target(targets[0]))
     updated_targets = []
     for target in targets:
         if target.is_exp('access_token'):
-            print('WARNING: target name has an expired access token. Skipping...')
+            current_app.display(msgs.user_code_expired(target))
             continue
         updated_targets.append(target)
     targets = updated_targets
@@ -59,15 +62,15 @@ def main():
     out_dict = {}
     for r in responses:
         target = target_id_mapping[r.resource.func_kwargs['target_id']]
-        if r.code != 200:
-            print('Could not get emails. Status code: {}')
+        if r.status != 200:
+            current_app.display(msgs.target_failed(target))
             continue
     out_dict[target.name] = r.json
 
     if settings.outpath:
         file_path = settings.outpath
     else:
-        file_path = os.path.join(wsp.root_dir, f"emails.{datetime.now().isoformat(sep='T')}.json")
+        file_path = os.path.join(wsp.root_dir, f"emails.{datetime.now().strftime('%Y%m%dT%H%M%S')}.json")
     utils.save_json(out_dict, file_path)
-    print('file saved to file...')
+    current_app.display(msgs.target_dumped(target))
 

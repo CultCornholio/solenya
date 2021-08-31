@@ -13,7 +13,7 @@ def no_targets_need_phishing():
     return f"{cf.yellow('WARNING')}: No phishing targets remianing."
 
 def target_authed(target):
-    return f"{cf.green('SUCCESS')}: target {cf.magenta(target.name)} has been successfully authenticated ({datetime.now()})!"
+    return f"{cf.green('Phishing SUCCESS')}: target {cf.magenta(target.name)} {cf.yellow('Pwn3d!')} ({datetime.now()})!"
 
 def starting_check():
     return "Running check..."
