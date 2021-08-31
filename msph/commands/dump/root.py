@@ -2,12 +2,12 @@ import argparse
 
 from msph.app import Command
 
-from .dump.command import email
+from .email.command import email
 
 
 dump = Command('dump', __name__)
 
-@auth.assembly
+@dump.assembly
 def assemble_parser(subparsers, app):
     parser = subparsers.add_parser('dump',
         help="Interacts with the Microsoft Graph API to gather data, exfiltrate data, and execute commands")
