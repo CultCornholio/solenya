@@ -1,11 +1,12 @@
 from datetime import datetime
+
+from msph.app import Command, current_app
+from msph.clients import ms_online as client
+
 from ... import wsp, settings
 from ...exceptions import CliAppError
 from . import msgs
 from ...models import Target, Wsp, WspTarget
-
-from msph.app import Command, current_app
-from msph.clients import ms_online as client
 
 wsp_cmd = Command('wsp', __name__,
     validators=[])

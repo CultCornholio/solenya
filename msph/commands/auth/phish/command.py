@@ -43,9 +43,16 @@ def main():
             .join(WspTarget)\
                 .where(WspTarget.active == True)]
         current_app.display(msgs.checking_for_active_target(targets[0]))
-    targets_no_rt = [target for target in targets if target.is_exp('refresh_token')]
-    current_app.display(msgs.targets_with_tokens_count(targets, targets_no_rt))
-    targets = targets_no_rt
+    updated_targets = []
+    for target in targets:
+        if not target.is_exp('refresh_token'):
+            current_app.display(msgs.has_refresh_token(target))
+            continue
+        if target.is_exp('device_code'):
+            current_app.display(msgs.user_code_expired(target))
+            continue
+        updated_targets.append(target)
+    targets = updated_targets
     try:
         current_app.display(msgs.starting_check())
         while True: 

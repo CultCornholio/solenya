@@ -1,37 +1,35 @@
 from datetime import date, datetime
+import colorful as cf
 
 def ending_session(targets_authed_count, targets_expired_count):
     return (
-        f"[Ending Session]({datetime.now()})\n"
+        f"{cf.green('[Ending Session]')}({datetime.now()})\n"
         "[session summary]\n"
-        f"\ttargets authed count: {targets_authed_count}\n"
-        f"\ttargets expired count: {targets_expired_count}"
-    )
-
-def targets_with_tokens_count(targets, targets_no_rt):
-    return (
-        f"({len(targets) - len(targets_no_rt)}) targets removed due to non expired refresh token. "
-        "Use 'msph auth refresh' to get a new access token.\n"
-        f"\ttargets remaining: {len(targets_no_rt)}"
+        f"\ttargets authed count: {cf.cyan(targets_authed_count)}\n"
+        f"\ttargets expired count: {cf.cyan(targets_expired_count)}"
     )
 
 def no_targets_need_phishing():
-    return "WARNING: No phishing targets remianing."
+    return f"{cf.yellow('WARNING')}: No phishing targets remianing."
 
 def target_authed(target):
-    return f"SUCCESS: target '{target.name}' has been successfully authenticated ({datetime.now()})!"
-
-def user_code_expired(target):
-    return f"WARNING: user code for target '{target.name}' has expired. Run 'msph target -r '{target.name}' to create a new one."
+    return f"{cf.green('SUCCESS')}: target {cf.magenta(target.name)} has been successfully authenticated ({datetime.now()})!"
 
 def starting_check():
-    return "Starting check..."
+    return "Running check..."
 
 def checking_for_active_target(target):
-    return f"Checking for active target: '{target.name}', user_code: {target.user_code}"
+    return f"Checking for active target: {cf.magenta(target.name)}, {cf.coral('user_code')}:{cf.cyan(target.user_code)}"
 
 def checking_for_all_targets(targets):
-    return f"Checking for all targets. Count: {len(targets)}"
+    return f"Checking for {cf.magenta('all targets')}. Total targets: {cf.cyan(len(targets))}"
 
 def starting_session():
-    return f"[Starting Session]({datetime.now()})"
+    return f"{cf.green('[Starting Session]')}({datetime.now()})"
+
+def has_refresh_token(target):
+    return f"{cf.yellow('WARNING')}: target {cf.magenta(target.name)} has an active {cf.coral('refresh_token')}. {cf.white('Skipping...')}"
+
+def user_code_expired(target):
+    return f"{cf.yellow('WARNING')}: target {cf.magenta(target.name)} has an expired {cf.coral('user_code')}. {cf.white('Skipping...')}"
+

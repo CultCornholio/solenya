@@ -1,4 +1,5 @@
 import sys
+#sys.tracebacklimit = 0
 
 from . import create_app
 

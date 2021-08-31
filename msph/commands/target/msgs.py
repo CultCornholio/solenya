@@ -1,49 +1,51 @@
+import colorful as cf
+
 def target_exists(name):
-    return f"WARNING: target '{name}' already exists. Skipping..."
+    return f"{cf.yellow('WARNING')}: target {cf.cyan(name)} already exists. {cf.white('Skipping...')}"
 
 def target_registered(target):
     return (
-        f"SUCCESS: target '{target.name}' has been registered. "
-        f"(user_code: {target.user_code}, expires: {target.get_exp_time('user_code')})"
+        f"{cf.green('SUCCESS')}: target {cf.magenta(target.name)} has been registered. "
+        f"({cf.coral('user_code')}:{cf.cyan(target.user_code)}, expires: {target.get_exp_time('user_code')})"
     )
 
 def target_reset(target):
     return (
-        f"SUCCESS: target '{target.name}' has been reset. "
-        f"(user_code: {target.user_code}, expires: {target.get_exp_time('user_code')})"
+        f"{cf.green('SUCCESS')}: target {cf.magenta(target.name)} has been reset. "
+        f"({cf.coral('user_code')}:{cf.cyan(target.user_code)}, expires: {target.get_exp_time('user_code')})"
     )
 
 def target_not_wsp(name):
-    return f"WARNING: target '{name}' is not in WorkSpace. Skipping..."
+    return f"{cf.yellow('WARNING')}: target {cf.magenta(name)} is not in WorkSpace. {cf.white('Skipping...')}"
 
 def target_is_active(target):
-    return f"WARNING: target '{target.name}' is active. Can not delete active target. Skipping..."
+    return f"{cf.yellow('WARNING')}: target {cf.magenta(target.name)} is active. Can not delete active target. {cf.white('Skipping...')}"
 
 def target_has_refresh_token(target):
     return (
-        f"WARNING: target '{target.name}' has a non expired refresh_token. "
-        "Add [--hard] flag to overwrite block. Skipping..."
+        f"{cf.yellow('WARNING')}: target {cf.magenta(target.name)} has a non expired refresh_token. "
+        f"Add [--hard] flag to overwrite block. {cf.white('Skipping...')}"
     )
 
 def target_deleted(target):
-    return f"SUCCESS: target '{target.name}' has been deleted."
+    return f"{cf.green('SUCCESS')}: target {cf.magenta(target.name)} has been deleted."
 
 def target_list(targets):
     msg = ""
     for target in targets:
-        if target.active: sub_msg = "* "
+        if target.active: sub_msg = cf.orange("* ")
         else: sub_msg = "  "
-        sub_msg += f"{target.name} [auth]"
+        sub_msg += f"{cf.magenta(target.name)} [auth]:"
         if target.refresh_token:
-            sub_msg += f"refresh_token" 
+            sub_msg += cf.coral('refresh_token') 
             if target.is_exp('refresh_token'):
-                sub_msg += "(EXPIRED)"
+                sub_msg += cf.red("(EXPIRED)")
             else:
                 sub_msg += f"(expires: {target.get_exp_time('refresh_token')})"
         else:
-            sub_msg += f"user_code:{target.user_code}"
+            sub_msg += f"{cf.coral('user_code')}:{cf.cyan(target.user_code)}"
             if target.is_exp('user_code'):
-                sub_msg += "(EXPIRED)"
+                sub_msg += cf.red("(EXPIRED)")
             else:
                 sub_msg += f"(expires: {target.get_exp_time('user_code')})"
         msg += f"{sub_msg}\n"
@@ -52,5 +54,5 @@ def target_list(targets):
 
 def target_made_active(target):
     return (
-        f"[WARNING] WorkSpace did not find an active target, Setting target '{target.name}' as active."
+        f"{cf.yellow('WARNING')} WorkSpace did not find an active target, Setting target {cf.magenta(target.name)} as active."
     )

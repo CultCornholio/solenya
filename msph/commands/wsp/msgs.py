@@ -1,15 +1,17 @@
+import colorful as cf
+
 def workspace_exists(app):
     return (
-        f"WorkSpace at '{app.plugins.wsp.root_dir}' already exists.\n"
-        f"Run '{app.name} wsp --reset' flag to reset WorkSpace.\n"
-        "WARNING: all data will be lost."
+        f"WorkSpace at {cf.cyan(app.plugins.wsp.root_dir)} already exists.\n"
+        f"Add {cf.cyan('--reset')} flag to reset WorkSpace.\n"
+        f"{cf.yellow('WARNING')}: all data will be lost."
     )
 
 def workspace_created(settings, wsp, target):
     return (
-        f"WorkSpace created at {wsp.root_dir}.\n"
-        f"client_id: {settings.client_id}\n"
-        f"active target: {target.name} [auth]user_code:{target.user_code}(expires at {target.get_exp_time('user_code')})"
+        f"{cf.green('SUCCESS')}: WorkSpace created at {cf.cyan(wsp.root_dir)}.\n"
+        f"{cf.white('client_id')}: {cf.cyan(settings.client_id)}\n"
+        f"{cf.white('active target')}: {cf.magenta(target.name)} [auth]:{cf.coral('user_code')}:{cf.cyan(target.user_code)} (expires at {target.get_exp_time('user_code')})"
     )
 
 def invalid_client_id(settings):
