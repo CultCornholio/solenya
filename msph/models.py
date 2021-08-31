@@ -43,7 +43,6 @@ class Target(BaseModel):
     def active(self):
         return self.wsp_target.first().active
 
-    
 class WspTarget(BaseModel):
     wsp = pw.ForeignKeyField(Wsp, backref='wsp_target')
     target = pw.ForeignKeyField(Target, backref="wsp_target")

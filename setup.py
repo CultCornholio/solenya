@@ -9,7 +9,7 @@ def get_long_description(path):
 
 setuptools.setup(
     name="msph", 
-    version="0.0.8",
+    version="0.1.1",
     author="Artur Saradzhyan, Alex Martirosyan",
     author_email="",
     description="CLI tool",
@@ -22,8 +22,8 @@ setuptools.setup(
             'msph = msph.__main__:main',                  
         ],       
     },
-    install_requires=['requests'],
-    setup_requires=['requests'],
+    install_requires=['aiohttp', 'peewee'],
+    setup_requires=['aiohttp', 'peewee'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

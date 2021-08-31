@@ -3,6 +3,7 @@ import argparse
 from msph.app import Command
 
 from .phish.command import phish
+from .refresh.command import refresh
 
 auth = Command('auth', __name__)
 
@@ -14,5 +15,6 @@ def assemble_parser(subparsers, app):
     subparsers.required = True
 
     phish.assemble_parser(subparsers, app=app)
+    refresh.assemble_parser(subparsers, app=app)
 
     return parser

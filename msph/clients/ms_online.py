@@ -25,7 +25,7 @@ def get_access_token(client_id:str, device_code:str) -> dict:
     )
 
 @client.endpoint
-def refresh_access_token(refresh_token:str) -> dict:
+def refresh_access_token(refresh_token:str, target_id:str) -> dict:
     return Resource(
         uri='/common/oauth2/v2.0/token',
         data={'grant_type': 'refresh_token', 'refresh_token': refresh_token, 'scope': const.DEVICE_CODE_SCOPE}
