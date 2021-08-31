@@ -47,6 +47,4 @@ def main():
         target.access_token_ts = datetime.now()
         target.save()
 
-    
-    
 

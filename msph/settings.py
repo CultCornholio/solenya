@@ -19,6 +19,7 @@ class Settings(SimpleNamespace):
         self.monitor = False
         self.all_targets = False
         self.target_names = []
+        self.outpath = ''
 
         self.__dict__.update(**kwargs)
 

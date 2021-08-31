@@ -11,7 +11,7 @@ client = Client(
 )
 
 @client.endpoint
-def get_emails(access_token):
+def get_emails(access_token, target_id):
     return Resource(
         uri='/v1.0/me/MailFolders/inbox/messages',
         headers={'Authorization': f'Bearer {access_token}'},
