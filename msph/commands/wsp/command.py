@@ -39,11 +39,6 @@ def main():
         if not settings.wsp_reset:
             raise CliAppError(msgs.workspace_exists(current_app))
         wsp.clear()
-    wsp.create()
-    wsp.connect_db()
-    wsp.db.create_tables([Target, Wsp, WspTarget])
-    wsp_record = Wsp(client_id = settings.client_id)
-    wsp_record.save()
     try:
         r = client.get_device_code(settings.client_id, raise_on_status_code = False)
         if settings.verbose:
@@ -53,6 +48,11 @@ def main():
     except:
         raise CliAppError(msgs.invalid_client_id(settings))
     else:
+        wsp.create()
+        wsp.connect_db()
+        wsp.db.create_tables([Target, Wsp, WspTarget])
+        wsp_record = Wsp(client_id = settings.client_id)
+        wsp_record.save()
         target = Target(
             name=settings.target_name,
             **r.json,
