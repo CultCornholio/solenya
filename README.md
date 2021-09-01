@@ -3,7 +3,7 @@
 # Solenya - Microsoft365 Device Code Phishing Framework
 
 <p align="center">
-    <img src="/images/pickleRick.png">
+    <img src="https://github.com/CultCornholio/solenya/tree/dev/images/pickleRick.png">
 </p>
 
 
@@ -15,7 +15,7 @@ By default, Microsoft allows any user to add new applications to their M365 prof
 ![default_permissions](/images/default_permissions.png)
 
 <p align="center">
-    <img src="/images/implication-dennis.gif">
+    <img src="https://github.com/CultCornholio/solenya/tree/dev/images/implication-dennis.gif">
 </p>
 
 ## Installation

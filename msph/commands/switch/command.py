@@ -15,7 +15,7 @@ def assemble_parser(subparsers):
     parser = subparsers.add_parser('switch',
         help="Switches active target.")
     parser.add_argument('-t', '--target',
-        help=("Automatically execute 'msph target {target_name}' "
+        help=("Automatically execute 'sol target {target_name}' "
             "command before running the 'switch' command."),
         dest="create_target",
         action="store_true")

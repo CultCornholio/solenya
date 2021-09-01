@@ -8,8 +8,8 @@ def get_long_description(path):
         return str()
 
 setuptools.setup(
-    name="msph", 
-    version="0.1.5",
+    name="solenya", 
+    version="0.1.6",
     author="Artur Saradzhyan, Alex Martirosyan",
     author_email="cult.cornholio@gmail.com",
     description="Microsoft365 Device Code Phishing Framework",
@@ -19,11 +19,11 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     entry_points = {
         'console_scripts': [
-            'msph = msph.__main__:main',                  
+            'col = msph.__main__:main',                  
         ],       
     },
-    install_requires=['aiohttp', 'peewee', 'colorful'],
-    setup_requires=['aiohttp', 'peewee', 'colorful'],
+    install_requires=['aiohttp==3.7.1', 'peewee==3.14.4', 'colorful==0.5.4'],
+    setup_requires=['aiohttp==3.7.1', 'peewee==3.14.4', 'colorful==0.5.4'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
