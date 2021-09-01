@@ -53,7 +53,7 @@ $ sol auth phish -ma
 ```
 The Oauth2 tokens (**access token** and **refresh token**) with access to the target's Office account will be retrieved from the API and saved the *WorkSpace* database. The *access tokens* can be refreshed using the ```refresh``` command.
 ```
-$ sol auth refresh --a
+$ sol auth refresh -a
 ```
 #### Dumping Data
 Once the target is authenticated the ```dump``` command can be used to dump information from the Graph API. 
@@ -63,7 +63,7 @@ $ sol dump emails
 #### Exporting Targets
 All the data on the *targets*, such as *access token*, *device code*, *refresh token*, *user code* and their respective timestamps can be exported using the ```export``` command.
 ```
-$ sol export --a
+$ sol export -a
 ```
 ## Contact
 - Contact us at cult.cornholio@gmail.com or open up a new Issue on GitHub.
