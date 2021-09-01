@@ -1,6 +1,6 @@
 <img src="https://img.shields.io/github/issues/CultCornholio/solenya">  <img src="https://img.shields.io/github/forks/CultCornholio/solenya">   <img src="https://img.shields.io/github/stars/CultCornholio/solenya">   <img src="https://img.shields.io/github/license/CultCornholio/solenya">
 
-# Solenya - Microsoft365 Device Code Phishing Framework
+# Solenya - M365 Device Code Phishing Framework
 
 <p align="center">
     <img src="/images/pickleRick.png">
