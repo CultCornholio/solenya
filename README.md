@@ -28,7 +28,7 @@ Install latest version from [PyPI](https://pypi.org/project/solenya/): ```pip in
 ## Usage
 The CLI tool works with **Targets**, which are objects contained inside a **WorkSpace**. The *WorkSpace* contains the tool's database and other resources, while *Targets* represent M365 accounts.
 #### Creating a Workspace
-The ```wsp``` command is responsible for initializing the *WorkSpace*. The tool leverages an SQLite database to store target information. 
+The ```wsp``` command is responsible for initializing the *WorkSpace*. The tool leverages an SQLite database to store target information. By default the command will create a folder ```.sol``` inside the current current directory.
 ```
 $ sol wsp c0785c37-5fb1-4ffb-8769-8e9b05ac4e80
 ```
