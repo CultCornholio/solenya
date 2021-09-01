@@ -1,7 +1,7 @@
 # Solenya - Microsoft365 Device Code Phishing Framework
 
 <p align="center">
-    <img src="/images/pickleRick.jpg">
+    <img src="/images/pickleRick.png">
 </p>
 
 
