@@ -19,7 +19,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     entry_points = {
         'console_scripts': [
-            'col = msph.__main__:main',                  
+            'sol = msph.__main__:main',                  
         ],       
     },
     install_requires=['aiohttp==3.7.1', 'peewee==3.14.4', 'colorful==0.5.4'],

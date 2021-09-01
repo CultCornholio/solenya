@@ -14,7 +14,7 @@ msph = Command('sol', __name__)
 @msph.assembly
 def assemble_parser(app):
     parser = argparse.ArgumentParser(
-        prog=app.name,
+        prog=msph.name,
         description="Microsoft365 Device Code Phishing CLI tool."
     )
     subparsers = parser.add_subparsers(dest="root_cmd")
