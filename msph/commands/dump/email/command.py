@@ -17,17 +17,17 @@ email = Command('email', __name__, validators=[ActiveTargetRequired()])
 @email.assembly
 def assemble_parser(subparsers):
     parser = subparsers.add_parser(email.name,
-        help="Fetches all e-mails from the inbox using the Microsoft Graph API and saves them to a file")
+        help="fetch all e-mails from the inbox using the Microsoft Graph API and dump them to a file")
     parser.add_argument('-a', '--all',
-        help="Collects all e-mails for every target in the workspace",
+        help="collect all e-mails for every target in the WorkSpace.",
         action="store_true",
         dest="all_targets")
     parser.add_argument('-v', '--verbose',
-        help="Displays output from the API.",
+        help="display output from the API.",
         action="store_true",
         dest="verbose")
     parser.add_argument('-o', '--output',
-        help="Specify the path where emails should be saved",
+        help="specify the path to save the dump to, saved in WorkSpace folder otherwise.",
         dest="outpath")
     return parser
 

@@ -13,12 +13,13 @@ refresh = Command('refresh', __name__, validators=[])
 @refresh.assembly
 def assemble_parser(subparsers):
     parser = subparsers.add_parser('refresh', 
-        help="Uses the refresh_token to obtain a new access token.")
-    parser.add_argument('-a', '-all',
-        help="Refreshes tokens for all targets with a non expired refresh_token.",
+        help="obtain a fresh access token using the refresh token.")
+    parser.add_argument('-a', '--all',
+        help="refresh tokens for all targets with a non expired refresh_token.",
+        action="store_true",
         dest="all_targets")
     parser.add_argument('-v', '--verbose',
-        help="Displays output from the API.",
+        help="display output from the API.",
         action="store_true",
         dest="verbose")
     return parser

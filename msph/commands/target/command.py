@@ -5,7 +5,7 @@ from msph.app import Command, current_app
 
 from ...clients import ms_online as client
 from ...exceptions import CliAppError
-from .validators import CliValidator
+from .validators import CliValidator, target_names
 from ...models import Target, WspTarget, Wsp
 from . import msgs
 from ... import settings
@@ -18,35 +18,32 @@ target = Command('target', __name__,
 def assemble_parser(subparsers, app):
     parser = subparsers.add_parser(
         name=target.name,
-        help="Manages targets stored in the WorkSpace.",
+        help="manage targets stored in the WorkSpace, shows avaliable targets if no arguments are supplied.",
     )
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-r', '--reset',
-        help=("Resets the device_code and user_code of specified target. "
-            "Program will block if target has non expired refresh_token."),
+        help=("reset the device_code and user_code of specified target, "
+            "program will block if target has non expired refresh_token."),
         dest="reset_target",
         action="store_true")
     group.add_argument('-d', '--delete',
-        help=("Deletes target specified by {target_name}. "
-            "Program will block if target has non expired refresh_token."),
+        help=("delete target specified by {target_name}, "
+            "program will block if target has non expired refresh_token."),
         dest="delete_target",
         action="store_true")
     parser.add_argument('-a', '--all',
-        help=("Designated all targets. Can only be used with [-r] flag."),
+        help=("designated all targets; can only be used with [-r] flag."),
         action='store_true',
         dest="all_targets")
     parser.add_argument('target_names',
-        help=("The name of the target. Run 'msph target {target_name}' to create a new target. "
-            "New targets are automatically assigned a device_code and user_code via API call. "
-            "All targets must have unique names. If not {target_name} or flags are supplied "
-            "the command will output all available targets."),
+        help=("names of the targets, creates the targets if no flags are supplied."),
         nargs="*",
-        type=str)
+        type=target_names)
     parser.add_argument('-v', '--verbose',
-        help="Show output of API.",
+        help="shows the output of API.",
         action="store_true")
     parser.add_argument('--hard',
-        help="Overwrites the block in the '--reset', '--delete' flags",
+        help="overwrite the block in the [-r | -d] flags",
         dest="reset_hard",
         action="store_true")
     return parser
@@ -123,7 +120,7 @@ async def _get_user_code(wsp_record):
     if settings.verbose:
         current_app.display(r.json)
     if r.status != 200:
-        raise CliAppError(msgs.could_not_get_user_code(settings))
+        raise CliAppError(msgs.could_not_get_user_code())
     return {
         'device_code': r.json['device_code'], 
         'user_code': r.json['user_code'],

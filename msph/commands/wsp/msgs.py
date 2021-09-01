@@ -17,6 +17,6 @@ def workspace_created(settings, wsp, target):
 def invalid_client_id(settings):
     return (
         f"Could not get user_code for target '{settings.target_name}'.\n"
-        f"Client id '{settings.client_id}'' may be invalid."
+        f"Client id '{cf.cyan(settings.client_id)}'' may be invalid."
         f"Set '--verbose' flag for more detail."
     )

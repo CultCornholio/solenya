@@ -10,7 +10,7 @@ dump = Command('dump', __name__)
 @dump.assembly
 def assemble_parser(subparsers, app):
     parser = subparsers.add_parser('dump',
-        help="Interacts with the Microsoft Graph API to gather data, exfiltrate data, and execute commands")
+        help="interacts with the Microsoft Graph API to gather data.")
     subparsers = parser.add_subparsers(dest='dump_cmd')
     subparsers.required = True
 

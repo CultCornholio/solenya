@@ -15,6 +15,13 @@ def target_reset(target):
         f"({cf.coral('user_code')}:{cf.cyan(target.user_code)}, expires: {target.get_exp_time('user_code')})"
     )
 
+def could_not_get_user_code(settings):
+    return (
+        f"Could not get user_code for specified targets.\n"
+        f"Client id '{cf.cyan(settings.client_id)}' may be invalid."
+        "Set '--verbose' flag for more detail."
+    )
+
 def target_not_wsp(name):
     return f"{cf.yellow('WARNING')}: target {cf.magenta(name)} is not in WorkSpace. {cf.white('Skipping...')}"
 

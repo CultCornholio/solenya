@@ -13,14 +13,14 @@ switch = Command('switch', __name__,
 @switch.assembly
 def assemble_parser(subparsers):
     parser = subparsers.add_parser('switch',
-        help="Switches active target.")
+        help="switches active target.")
     parser.add_argument('-t', '--target',
-        help=("Automatically execute 'sol target {target_name}' "
-            "command before running the 'switch' command."),
+        help=("automatically create target if none exists before "
+            "running the reset of the command."),
         dest="create_target",
         action="store_true")
     parser.add_argument('target_name',
-        help="The name of the target to switch to.",
+        help="the name of the target to switch to.",
         type=str)
     return parser
     

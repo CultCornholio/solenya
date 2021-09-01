@@ -2,12 +2,13 @@
 
 # Solenya - M365 Device Code Phishing Framework
 
+Solenya is a CLI tool which provides a framework to perform M365 device code phishing. As defined in RFC8628, an attacker can perform a social engineering attack by instructing a target to register a malicious application using a device code. 
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/CultCornholio/solenya/dev/images/pickleRick.png" width="50%" height="100%">
 </p>
 
-
-Solenya is a cli tool which provides a framework to perform M365 device code phishing. As defined in RFC8628, an attacker can perform a social engineering attack by instructing a target to register a malicious application using a device code. 
+**DISCLAIMER**: The contributors are not responsible for any malicious use of the tool. The tool is developed for educational purposes and should be used solely by defenders or authorized testers.
 
 ## Prerequisites
 By default, Microsoft allows any user to add new applications to their M365 profile. Below, is a screenshot of a fresh deployment of an Azure subscription.
@@ -22,42 +23,47 @@ By default, Microsoft allows any user to add new applications to their M365 prof
 
 **The package requires Python 3.7 or higher.**
 
-Install latest version from PyPI: ```pip install solenya```
+Install latest version from [PyPI](https://pypi.org/project/solenya/): ```pip install solenya```
 
 ## Usage
-
-### Creating a Workspace
-The ```wsp``` command is responsible for initializing the WorkSpace. The tool leverages an SQLite database to store target information. To create a workspace run:
+The CLI tool works with **Targets**, which are objects contained inside a **WorkSpace**. The *WorkSpace* contains the tool's database and other resources, while *Targets* represent M365 accounts.
+#### Creating a Workspace
+The ```wsp``` command is responsible for initializing the *WorkSpace*. The tool leverages an SQLite database to store target information. 
 ```
-$ sol wsp <client_ID> -t <target_name>
+$ sol wsp c0785c37-5fb1-4ffb-8769-8e9b05ac4e80
 ```
-### Managing Targets
-The ```target``` command can add additional targets and remove or reset existing ones. The command will automatically reach out to Microsoft Online API and create a User Code and a Device Code, which will both be stored in the database. 
+#### Managing Targets
+The ```target``` command can add additional targets and remove or reset existing ones. The command will automatically reach out to Microsoft Online API and create a **user code** and a **device code**, which will both be stored in the database. 
 ```
-$ sol target <target_names>
+$ sol target jaguar rat
 ```
-The ```switch``` command switches between active targets in the WorkSpace.
+The ```wsp``` command automatically created a target called *default*. To switch to a different target use the ```switch``` command.
 ```
-$ sol switch <target_name>
+$ sol switch jaguar
 ```
-### Gathering OAuth Access Tokens 
-The ```auth``` command is responsible for authenticating targets registered with the WorkSpace. Run the ```phish``` sub command and wait for the your targets to enter the device code on their end.
+User codes and device codes expire after **15 minutes**. To reset the *device code* on the target or delete the target entirely set the following flags.
 ```
-$ sol auth phish --monitor --all
+$ sol target -d default
+$ sol target -ra 
 ```
-Once the Refresh and Access tokens are obtained they will be saved to the database. The Access token can be refreshed using the ```refresh command```.
+#### Gathering OAuth Access Tokens 
+The ```auth``` command is responsible for authenticating *targets* registered with the *WorkSpace*. Run the ```phish``` sub command and wait for your *targets* to enter the *user code*.
 ```
-$ sol auth refresh --all
+$ sol auth phish -ma
 ```
-### Dumping Data
-Once the target is authenticated the ```dump``` command can be used to dump information from the Graph API.
+The Oauth2 tokens (**access token** and **refresh token**) with access to the target's Office account will be retrieved from the API and saved the *WorkSpace* database. The *access tokens* can be refreshed using the ```refresh``` command.
 ```
-$ sol dump emails --all
+$ sol auth refresh --a
 ```
-### Exporting Targets
-The information in the database can be exported using the ```export``` command.
+#### Dumping Data
+Once the target is authenticated the ```dump``` command can be used to dump information from the Graph API. 
 ```
-$ sol export --all
+$ sol dump emails
+```
+#### Exporting Targets
+All the data on the *targets*, such as *access token*, *device code*, *refresh token*, *user code* and their respective timestamps can be exported using the ```export``` command.
+```
+$ sol export --a
 ```
 ## Contact
 - Contact us at cult.cornholio@gmail.com or open up a new Issue on GitHub.

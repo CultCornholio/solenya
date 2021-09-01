@@ -5,6 +5,7 @@ from msph.clients import ms_online as client
 
 from ... import wsp, settings
 from ...exceptions import CliAppError
+from .validators import client_id
 from . import msgs
 from ...models import Target, Wsp, WspTarget
 
@@ -14,19 +15,20 @@ wsp_cmd = Command('wsp', __name__,
 @wsp_cmd.assembly
 def assemble_parser(subparsers):
     parser = subparsers.add_parser(wsp_cmd.name,
-        help='Initializes the WorkSpace.')
+        help='initialize the WorkSpace.')
     parser.add_argument('client_id',
-        help='The client id of the application with needed permissions.')
+        help='client id of the application with needed permissions.',
+        type=client_id)
     parser.add_argument('-t --target',
-        help="Specifies active target name, 'default' otherwise.",
+        help="specify active target name, 'default' otherwise.",
         default="default",
         dest="target_name")
     parser.add_argument('--reset-hard',
-        help="Reset existing WorkSpace.",
+        help="reset existing WorkSpace.",
         dest="wsp_reset",
         action='store_true')
     parser.add_argument('-v', '--verbose',
-        help="Show output of API.",
+        help="show output of API.",
         dest="verbose",
         action='store_true')
     return parser

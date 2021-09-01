@@ -13,17 +13,17 @@ phish = Command('phish', __name__, validators=[])
 @phish.assembly
 def assemble_parser(subparsers):
     parser = subparsers.add_parser('phish',
-        help="Fetches the OAuth tokens via oauth2 using device_code.")
+        help="fetch the OAuth tokens via oauth2 using device_code.")
     parser.add_argument('-a', '-all',
-        help="Fetches tokens for all targets registered with WorkSpace.",
+        help="fetch tokens for all targets registered with WorkSpace.",
         action="store_true",
         dest="all_targets")
     parser.add_argument('-v', '--verbose',
-        help="Displays output from the API.",
+        help="display output from the API.",
         action="store_true",
         dest="verbose")
     parser.add_argument('-m', '--monitor',
-        help="Fetch the OAuth tokens incrementally making API calls in monitor mode, this is preferred",
+        help="fetch the OAuth tokens incrementally making API calls in monitor mode, this is preferred",
         action='store_true',
         dest="monitor")
     return parser

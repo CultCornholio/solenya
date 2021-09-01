@@ -1,3 +1,6 @@
+import argparse
+import re
+
 from msph.app import Validator, current_app
 
 from ... import settings
@@ -23,3 +26,11 @@ class CliValidator(Validator):
                 current_app.active_command.parser.error("[-v] flag can only be set when creating or reseting targets.")
         return True
         
+def target_names(name):
+    name = str(name)
+    pattern = re.compile("^[a-z0-9_]*$")
+    if len(name) > 10 or len(name) < 3 or not pattern.match(name):
+        raise argparse.ArgumentTypeError(
+            "target name must be between 3-10 characters long "
+            "and can only contain lowercase letters, numbers and underscores.")
+    return name
