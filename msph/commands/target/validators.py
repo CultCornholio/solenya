@@ -12,8 +12,6 @@ class CliValidator(Validator):
             if not settings.target_names:
                 current_app.active_command.parser.error('Must specify {target_names} with [-d] flag.')
         if settings.reset_target:
-            if not settings.target_names and not settings.all_targets:
-                current_app.active_command.parser.error('Must specify either {target_names} or [-a] flag with [-r] flag.')
             if settings.target_names and settings.all_targets:
                 current_app.active_command.parser.error('Can no specify {target_names} with [-a] flag.')
         if settings.all_targets and not settings.reset_target:

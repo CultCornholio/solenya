@@ -54,7 +54,7 @@ def main():
     client.client.aio = True
     if not settings.target_names:
         targets = sorted([target for target in Target.select()], key=lambda t: not t.active)
-        if not settings.all_targets:
+        if not settings.all_targets and not settings.reset_target:
             current_app.display(msgs.target_list(targets))
             return 
     if not settings.delete_target and not settings.reset_target:
@@ -98,8 +98,12 @@ def main():
                     current_app.display(msgs.target_not_wsp(name))
                     continue
                 targets.append(target)
-        if settings.all_targets:
+        elif settings.all_targets:
             targets = [target for target in Target.select()]
+        else:
+            targets = [target for target in Target.select()\
+                .join(WspTarget)\
+                    .where(WspTarget.active == True)]
         targets_no_rt = []
         for target in targets:
             if not target.is_exp('refresh_token') and not settings.reset_hard:

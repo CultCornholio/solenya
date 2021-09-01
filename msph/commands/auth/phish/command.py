@@ -48,9 +48,9 @@ def main():
         if not target.is_exp('refresh_token'):
             current_app.display(msgs.has_refresh_token(target))
             continue
-        if target.is_exp('device_code'):
-            current_app.display(msgs.user_code_expired(target))
-            continue
+        # if target.is_exp('device_code'):
+        #     current_app.display(msgs.user_code_expired(target))
+        #     continue
         updated_targets.append(target)
     targets = updated_targets
     try:

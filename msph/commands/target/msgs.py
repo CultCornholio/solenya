@@ -30,8 +30,7 @@ def target_is_active(target):
 
 def target_has_refresh_token(target):
     return (
-        f"{cf.yellow('WARNING')}: target {cf.magenta(target.name)} has a non expired refresh_token. "
-        f"Add [--hard] flag to overwrite block. {cf.white('Skipping...')}"
+        f"{cf.yellow('WARNING')}: target {cf.magenta(target.name)} has a non expired refresh_token. {cf.white('Skipping...')}"
     )
 
 def target_deleted(target):
