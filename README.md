@@ -1,6 +1,6 @@
 <img src="https://img.shields.io/github/issues/CultCornholio/solenya">  <img src="https://img.shields.io/github/forks/CultCornholio/solenya">   <img src="https://img.shields.io/github/stars/CultCornholio/solenya">   <img src="https://img.shields.io/github/license/CultCornholio/solenya">
 
-# Solenya - Microsoft365 Device Code Phishing Framework
+# Solenya - M365 Device Code Phishing Framework
 
 <p align="center">
     <img src="https://github.com/CultCornholio/solenya/tree/dev/images/pickleRick.png">
@@ -9,7 +9,7 @@
 
 Solenya is a cli tool which provides a framework to perform M365 device code phishing. As defined in RFC8628, an attacker can perform a social engineering attack by instructing a target to register a malicious application using a device code. 
 
-## Creating Azure Application
+## Prerequisites
 By default, Microsoft allows any user to add new applications to their M365 profile. Below, is a screenshot of a fresh deployment of an Azure subscription.
 
 ![default_permissions](/images/default_permissions.png)
