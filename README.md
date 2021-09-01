@@ -2,7 +2,7 @@
 
 
 
-![implication](https://i.imgur.com/Ukr2IcD.gif)
+![implication](/images/implication-dennis.gif)
 
 
 
@@ -11,19 +11,17 @@ Solyena is a cli tool which provides a framework to perform M365 device code phi
 
 ![default_permissions](/images/default_permissions.png)
 
-An Organization is vulnerable to this attack if they have 
+
 
 ## Creating a Workspace
 ```
-$ msph 
+$ solyena 
 [INFO] Usage: solyena wsp <client_ID> -t <target_name>
-[INFO] Example: solyena wsp fake-azure-app-registration-id -t beavis
 ```
 
 ## Gathering OAuth Access Tokens 
 ```
 $ solyena auth 
-[INFO] Example: solyena auth phish -ma
 ```
 
 ## Acknowledgements
