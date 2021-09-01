@@ -12,7 +12,7 @@ Solenya is a cli tool which provides a framework to perform M365 device code phi
 ## Prerequisites
 By default, Microsoft allows any user to add new applications to their M365 profile. Below, is a screenshot of a fresh deployment of an Azure subscription.
 
-![default_permissions](/images/default_permissions.png)
+![default_permissions](https://raw.githubusercontent.com/CultCornholio/solenya/dev/images/default_permissions.png)
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/CultCornholio/solenya/dev/images/implication-dennis.gif">
