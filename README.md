@@ -2,7 +2,7 @@
 
 
 
-![solenya](/images/legend-of-solenya.jpg =200x250)
+![solenya](/images/babayaga.jpg)
 
 
 
