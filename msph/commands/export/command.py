@@ -2,12 +2,13 @@ from playhouse.shortcuts import model_to_dict
 from datetime import datetime
 import os
 
-from msph.app import Command
+from msph.app import Command, current_app
 
 from ... import settings, wsp
-from ...models import WspTarget, Wsp, Target
+from ...models import WspTarget, Target
 from ...validators import ActiveTargetRequired
 from ... import utils
+from . import msgs
 
 export = Command('export', __name__, validators=[ActiveTargetRequired()])
 
@@ -33,12 +34,12 @@ def assembly(subparsers):
 def main():
     if settings.all_targets:
         targets = [target for target in Target.select()]
-        print('Running export for all targets...')
+        current_app.display(msgs.exporting_active_target(targets[0]))
     else:
         targets = [target for target in Target.select()\
             .join(WspTarget)\
                 .where(WspTarget.active == True)]
-        print('Running export for active target...')
+        current_app.display(msgs.exporting_all_targets(targets))
     if settings.outpath:
         file_path = settings.outpath
     else:
@@ -57,7 +58,7 @@ def main():
                 if isinstance(v, datetime):
                     target[k] = v.isoformat(sep=' ')
         utils.save_json(target_dicts, file_path)
-    print('saved targets to file....')
+    current_app.display(msgs.saved_targets_to_file(file_path))
 
     
     

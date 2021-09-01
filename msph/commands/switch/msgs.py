@@ -6,7 +6,7 @@ def active_target_set(target):
         "[auth]:"
     )
     if target.refresh_token:
-        msg += cf.coral("refresh_toked")
+        msg += cf.green("refresh_toked")
         if target.is_exp('refresh_token'):
             msg += cf.danger('(EXPIRED)')
         else:

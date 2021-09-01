@@ -4,8 +4,9 @@ from datetime import datetime
 from msph.app import Command, current_app
 
 from ....clients import ms_online as client
-from ....models import Wsp, WspTarget, Target
+from ....models import WspTarget, Target
 from .... import settings
+from . import msgs
 
 refresh = Command('refresh', __name__, validators=[])
 
@@ -25,20 +26,20 @@ def assemble_parser(subparsers):
 @refresh.func
 def main():
     client.client.aio = True
-    wsp_record = Wsp.select().first()
     if settings.all_targets:
         targets = [target for target in Target.select()]
-        print('Running refresh for all targets with valid refresh_token: count...')
+        current_app.display(msgs.checking_for_all_targets(targets))
     else:
         targets = [target for target in Target.select()\
             .join(WspTarget)\
                 .where(WspTarget.active == True)]
-        print('Running refresh for active target: info...')
+        current_app.display(msgs.checking_for_active_target(targets[0]))
     updated_targets = []
     for target in targets:
         if target.is_exp('refresh_token'):
-            print('WARNING: target does not have a valid refresh token... Skiping...')
+            current_app.display(msgs.no_refresh_token(target))
             continue
+        updated_targets.append(target)
     targets = updated_targets
     target_id_mapping = {target.id: target for target in targets}
     cors = [client.refresh_access_token(
@@ -47,11 +48,12 @@ def main():
     for r in responses:
         target = target_id_mapping[r.resource.func_kwargs['target_id']]
         if r.status != 200:
-            print('Could not get access token... Skipping...')
+            current_app.display(msgs.could_not_get_access_token(target))
             continue
         target.access_token = r.json['access_token']
         target.access_token_ts = datetime.now()
         target.save()
-        print('SUCCESS: access token updated for target....')
+        current_app.display(msgs.access_token_success(target))
+        
 
 

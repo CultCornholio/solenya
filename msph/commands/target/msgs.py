@@ -37,7 +37,7 @@ def target_list(targets):
         else: sub_msg = "  "
         sub_msg += f"{cf.magenta(target.name)} [auth]:"
         if target.refresh_token:
-            sub_msg += cf.coral('refresh_token') 
+            sub_msg += cf.green('refresh_token') 
             if target.is_exp('refresh_token'):
                 sub_msg += cf.red("(EXPIRED)")
             else:
