@@ -3,7 +3,7 @@
 # Solenya - M365 Device Code Phishing Framework
 
 <p align="center">
-    <img src="https://github.com/CultCornholio/solenya/tree/dev/images/pickleRick.png">
+    <img src="https://raw.githubusercontent.com/CultCornholio/solenya/dev/images/pickleRick.png">
 </p>
 
 
