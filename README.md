@@ -61,7 +61,12 @@ $ sol export --all
 - Contact us at cult.cornholio@gmail.com or open up a new Issue on GitHub.
 
 ## Acknowledgements
-
+- [Optiv - Microsoft 365 OAuth Device Code Flow and Phishing](https://www.optiv.com/insights/source-zero/blog/microsoft-365-oauth-device-code-flow-and-phishing)
+- [SecureWorks - OAuth’s Device Code Flow Abused in Phishing Attacks](https://www.secureworks.com/blog/oauths-device-code-flow-abused-in-phishing-attacks)
+- [Jenko Hwong - New Phishing Attacks Exploiting OAuth Authorization Flows](https://www.netskope.com/blog/new-phishing-attacks-exploiting-oauth-authorization-flows-part-1)
+- [Dirk-jan Mollema - ROADtools](https://dirkjanm.io/introducing-roadtools-and-roadrecon-azure-ad-exploration-framework/)
+- [Office 365 Blog](https://o365blog.com/post/phishing/)
+- [rvrsh3ll - TokenTactics](https://github.com/rvrsh3ll/TokenTactics)
 
 
 
