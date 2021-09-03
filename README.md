@@ -109,8 +109,8 @@ $ sol export -a
 
 ## Defensive Mitigations
 
-1. [Modify the permissions and consent settings to best suite your Organization - (Optiv)](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/configure-user-consent?tabs=azure-portal)
-2. [Create an administrative workflow so appropriate individuals are notified when an application is applied to a profile (Optiv)](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/manage-consent-requests)
+1. [Modify the permissions and consent settings to best suite your Organization - Optiv](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/configure-user-consent?tabs=azure-portal)
+2. [Create an administrative workflow so appropriate individuals are notified when an application is applied to a profile - Optiv](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/manage-consent-requests)
 3. Train users to better understand the authentication flow in use and implications of misuse 
 4. You have the ability to in theory detect/prevent anyone from accessing the device logon endpoint. However, this may be used by legitamate services.
 
