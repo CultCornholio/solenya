@@ -38,7 +38,7 @@ You now successfully registered an application that can be used to perform devic
 
 ![get_clientid](https://raw.githubusercontent.com/CultCornholio/solenya/master/images/getting-client-id.png)
 
-4. Convince a target to enter the user code at the following endpoint using solenya (https://microsoft.com/devicelogin)
+4. Convince a target to enter the user code at the following endpoint using solenya (https://microsoft.com/devicelogin).
 
 ## Additional Considerations
 
