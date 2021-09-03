@@ -19,11 +19,20 @@ To create a "malicious" application you need an Azure subscrition. For testing p
 
 Once created, head to the Azure Portal and search for "App Registrations". Here, you can create a "New Registration" with any arbitrary name. This name will be visible to any user that attempts to authorize the application. You also have the ability to add a logo to create a convincing pre-text. 
 
+![app_registrations](https://raw.githubusercontent.com/CultCornholio/solenya/master/images/app-registrations.png)
+
 1. Choose "Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)" under the account type section.
 
 You now successfully registered an application that can be used to perform device code phishing. The last important change that needs to be made is in the "Authentication" settings of the application. 
 
+![app_settings](https://raw.githubusercontent.com/CultCornholio/solenya/master/images/app-demo.png)
+
 2. Enable public client flows so the application can be accessed remotely without any redirects.
+
+![app_auth](https://raw.githubusercontent.com/CultCornholio/solenya/master/images/app-auth.png)
+
+
+![app_clientflow](https://raw.githubusercontent.com/CultCornholio/solenya/master/images/public-client.png)
 
 3. Convince a target to enter the device code at the following endpoint using solenya (https://microsoft.com/devicelogin)
 
