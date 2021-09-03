@@ -34,7 +34,11 @@ You now successfully registered an application that can be used to perform devic
 
 ![app_clientflow](https://raw.githubusercontent.com/CultCornholio/solenya/master/images/public-client.png)
 
-3. Convince a target to enter the device code at the following endpoint using solenya (https://microsoft.com/devicelogin)
+3. Use solenya with the "client_id" of the created application to generate a device code for a target.
+
+![get_clientid](https://raw.githubusercontent.com/CultCornholio/solenya/master/images/getting-client-id.png)
+
+4. Convince a target to enter the device code at the following endpoint using solenya (https://microsoft.com/devicelogin)
 
 ## Additional Considerations
 
