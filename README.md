@@ -48,7 +48,7 @@ You also have the ability to tweak the "API Permissions" of the application. Thi
 
 ## Motivation
 
-If you understand the basics of this attack, you may still be left wondering what situation you would perform device code phishing over traditional phishing. In this attack, you only have 15 minutes to convince a user to enter the code before it expires and you don't actually get any credentials that can be used to logon interactively. Instead, you recieve OAuth tokens in the form of an access_token, refresh_token, and id_token. 
+If you understand the basics of this attack, you may still be left wondering what situation would you perform device code phishing over traditional phishing. In this attack, you only have 15 minutes to convince a user to enter the code before it expires and you don't actually get any credentials that can be used to logon interactively. Instead, you recieve OAuth tokens in the form of an access_token, refresh_token, and id_token. 
 
 The short answer is because we are leveraging pre-built infrastructure. Specifically, we are relying on Microsoft 365 entirely to serve our phishing infrastructure. This builds trust not only with a target but with a vareity of security controls. How many people are actively blocking Microsoft urls? How many people have a spam bypass rule allowing any links from Microsoft to be allowed in? A phishing or vishing pre-text can be made where a plaintext message arrives in a target inbox allowing an attacker can convince the user to authorize the application. There are also better writeups with more detail, see the Acknowledgements section for more resources and information. Without their knowledge this tool would not exist. 
 
