@@ -9,7 +9,7 @@ def get_long_description(path):
 
 setuptools.setup(
     name="solenya", 
-    version="0.1.10",
+    version="0.1.11",
     author="Artur Saradzhyan, Alex Martirosyan",
     author_email="cult.cornholio@gmail.com",
     description="Microsoft365 Device Code Phishing Framework",
